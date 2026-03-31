@@ -6,15 +6,17 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
+
 category = ['Politics', 'Economy', 'Social', 'Culture', 'World', 'IT']
 
 options = ChromeOptions()
 options.add_argument('lang=ko_KR')
-# options.add_argument('headless')
+options.add_argument('headless')
+
 service = ChromeService(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
-# 본인 카테고리
-my_section = 0
+
+my_section = 1
 
 url = 'https://news.naver.com/section/10{}'.format(my_section)
 driver.get(url)
@@ -23,6 +25,8 @@ driver.get(url)
 #     time.sleep(0.5)
 #     button_xpath = '//*[@id="newsct"]/div[4]/div/div[2]'
 #     driver.find_element(By.XPATH, button_xpath).click()
+
+button_xpath = '//*[@id="newsct"]/div[4]/div/div[2]'
 
 while True:
     try:
